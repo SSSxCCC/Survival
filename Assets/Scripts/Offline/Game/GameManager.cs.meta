@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 98950afa75a8b68468c75b5bf65b06a7
+timeCreated: 1507948125
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerPrefab: {fileID: 1630775474425548, guid: e08086fc7221b604582d30e1fd2562b1,
+      type: 2}
+  - startPlace: {instanceID: 0}
+  - hintUIText: {instanceID: 0}
+  - completeItem: {fileID: 11400000, guid: 62ed0920bc10cda48b4d710c54017aef, type: 2}
+  - terminatedItem: {fileID: 11400000, guid: b2258e2b17a839b42a66771988c70868, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Obstacle
+  - Vehicle
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Float
+  - Air
+  - EnemyGround
+  - EnemyFloat
+  - EnemyAir
+  - Ammo
+  - AmmoAir
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2441623811
+    locked: 0
+  - name: Water
+    uniqueID: 2879254139
+    locked: 0
+  - name: Overground
+    uniqueID: 1056182961
+    locked: 0
+  - name: Float
+    uniqueID: 3693259057
+    locked: 0
+  - name: Air
+    uniqueID: 2314799399
+    locked: 0
