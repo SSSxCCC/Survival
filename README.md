@@ -26,3 +26,5 @@ You can download this game(windows and android) to understand the project in the
 在这里可以下载到此游戏的android或windows版本来体验并了解此工程：https://github.com/SSSxCCC/Survival/releases
 
 ![image](https://github.com/SSSxCCC/Survival/raw/master/demo.png)
+
+此分支是本项目代码在2021年大规模重构前的最后一个版本，也是最后一个存在单机模式的版本。
