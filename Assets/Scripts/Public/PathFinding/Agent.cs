@@ -5,7 +5,7 @@ public class Agent : MonoBehaviour
 {
     [HideInInspector] public Waypoint waypoint; // 正处于的路径点，即目前最后撞到的Waypoint对象
 
-    private IController controller;
+    private Controller controller;
 
     Waypoint m_Destination; // 目标路径点
     public Waypoint destination
@@ -22,7 +22,7 @@ public class Agent : MonoBehaviour
 
     private void Awake()
     {
-        controller = GetComponent<IController>();
+        controller = GetComponent<Controller>();
     }
 
     public Vector2 GetNext()

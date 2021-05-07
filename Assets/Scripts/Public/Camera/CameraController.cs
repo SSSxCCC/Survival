@@ -83,7 +83,7 @@ public class CameraController : MonoBehaviour {
 
         Vector2 position;
         GameObject vehicle;
-        if ((vehicle = localPlayer.GetComponent<IPlayerController>().vehicle) == null)
+        if ((vehicle = localPlayer.GetComponent<PlayerController>().vehicle) == null)
         {
             position = localPlayer.transform.position;
         }

@@ -21,7 +21,7 @@ public class Waypoint : MonoBehaviour
         Agent agent = collider.GetComponent<Agent>();
         if (agent != null)
         {
-            IController controller = agent.GetComponent<IController>();
+            Controller controller = agent.GetComponent<Controller>();
             if (controller == null || GetAdjacentPoints(controller.obstacleLayerMask).Count > 0) // 防止电脑寻路时卡死
                 agent.waypoint = this;
         }
