@@ -28,7 +28,7 @@ You can [download](https://github.com/SSSxCCC/Survival/releases) this game (wind
 
 ## Requirements
 
-* Unity 2021.1.5f1c1
+* Unity 2021.1.5f1
 
 ![image](https://github.com/SSSxCCC/Survival/raw/master/demo.png)
 
