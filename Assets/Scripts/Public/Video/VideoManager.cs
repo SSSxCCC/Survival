@@ -3,8 +3,7 @@
 /// <summary>
 /// 视频管理器，管理分辨率，刷新率等视频相关设定。
 /// </summary>
-public class VideoManager : MonoBehaviour
-{
+public class VideoManager : MonoBehaviour {
     public static VideoManager singleton; // 单例
 
     /// <summary>
@@ -53,14 +52,10 @@ public class VideoManager : MonoBehaviour
     private const string maxFpsKey = "maxFps";
 
     // 单例模式
-    private void Awake()
-    {
-        if (singleton == null)
-        {
+    private void Awake() {
+        if (singleton == null) {
             singleton = this;
-        }
-        else if (singleton != this)
-        {
+        } else if (singleton != this) {
             Destroy(gameObject);
             return;
         }
@@ -71,8 +66,7 @@ public class VideoManager : MonoBehaviour
     }
 
     // 初始化，读取上次设定。
-    private void Initialize()
-    {
+    private void Initialize() {
         QualitySettings.vSyncCount = PlayerPrefs.GetInt(vSyncKey, 1);
         m_CurrentResolutionIndex = PlayerPrefs.GetInt(resolutionIndexKey, Screen.resolutions.Length - 1);
         Application.targetFrameRate = PlayerPrefs.GetInt(maxFpsKey, 60);

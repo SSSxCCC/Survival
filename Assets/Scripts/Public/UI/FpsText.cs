@@ -2,8 +2,7 @@
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Text))]
-public class FpsText : MonoBehaviour
-{
+public class FpsText : MonoBehaviour {
     public LocalizationItem fpsItem;
 
     private const float interval = 1f; // 计算FPS时间间隔
@@ -13,20 +12,17 @@ public class FpsText : MonoBehaviour
 
     private Text fpsText; // 显示FPS的标签
 
-    private void Start()
-    {
+    private void Start() {
         fpsText = GetComponent<Text>();
     }
 
-    private void Update()
-    {
+    private void Update() {
         // 统计时间和帧数
         timePassed += Time.unscaledDeltaTime;
         frameCount++;
 
         // 计算帧率
-        if (timePassed >= interval)
-        {
+        if (timePassed >= interval) {
             float fps = frameCount / timePassed;
             fpsText.text = fpsItem.GetText() + ": " + fps.ToString("f2");
             timePassed = 0;

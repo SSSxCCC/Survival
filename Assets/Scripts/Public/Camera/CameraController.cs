@@ -12,8 +12,7 @@ public class CameraController : MonoBehaviour {
 
     [HideInInspector] public GameObject localPlayer; // 玩家对象，在PlayerController里面赋值
 
-    private void Update()
-    {
+    private void Update() {
         Zoom(); // 缩放
         FollowPlayer(); // 跟随玩家
 
@@ -25,8 +24,7 @@ public class CameraController : MonoBehaviour {
     }
 
     // 镜头缩放
-    private void Zoom()
-    {
+    private void Zoom() {
         // 鼠标滚轮缩放
         float size = Camera.main.orthographicSize;
         size -= Input.GetAxis("Mouse ScrollWheel") * mouseSensitivity;
@@ -34,8 +32,7 @@ public class CameraController : MonoBehaviour {
         Camera.main.orthographicSize = size;
 
         // 触屏缩放
-        if (ShouldTouchZoom())
-        {
+        if (ShouldTouchZoom()) {
             // 得到这两点上一帧的位置
             Vector2 touchZeroPrevPos = Input.GetTouch(0).position - Input.GetTouch(0).deltaPosition;
             Vector2 touchOnePrevPos = Input.GetTouch(1).position - Input.GetTouch(1).deltaPosition;
@@ -52,11 +49,9 @@ public class CameraController : MonoBehaviour {
     }
 
     // 判断当前触屏情况是否可以缩放
-    private bool ShouldTouchZoom()
-    {
+    private bool ShouldTouchZoom() {
         // 有2个触点
-        if (Input.touchCount == 2)
-        {
+        if (Input.touchCount == 2) {
             // 分别得到2个触点的位置
             Vector2 touchZero = Input.GetTouch(0).position;
             Vector2 touchOne = Input.GetTouch(1).position;
@@ -64,8 +59,7 @@ public class CameraController : MonoBehaviour {
             // 一个在左上角一个在右上角
             if (touchZero.y > Screen.height / 2 && touchOne.y > Screen.height / 2 &&
                 ((touchZero.x < Screen.width / 2 && touchOne.x > Screen.width / 2) ||
-                (touchOne.x < Screen.width / 2 && touchZero.x > Screen.width / 2)))
-            {
+                (touchOne.x < Screen.width / 2 && touchZero.x > Screen.width / 2))) {
                 return true;
             }
         }
@@ -74,21 +68,16 @@ public class CameraController : MonoBehaviour {
     }
 
     // 镜头跟着玩家
-    private void FollowPlayer()
-    {
-        if (localPlayer == null)
-        {
+    private void FollowPlayer() {
+        if (localPlayer == null) {
             return;
         }
 
         Vector2 position;
         GameObject vehicle;
-        if ((vehicle = localPlayer.GetComponent<PlayerController>().vehicle) == null)
-        {
+        if ((vehicle = localPlayer.GetComponent<PlayerController>().vehicle) == null) {
             position = localPlayer.transform.position;
-        }
-        else
-        {
+        } else {
             position = vehicle.transform.position;
         }
         transform.position = new Vector3(position.x, position.y, -10);

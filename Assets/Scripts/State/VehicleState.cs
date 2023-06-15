@@ -1,7 +1,6 @@
 ﻿using UnityEngine.Networking;
 
-public class VehicleState : State
-{
+public class VehicleState : State {
     // 等一会就销毁
     [Server]
     protected override void OnEmptyHealth() {

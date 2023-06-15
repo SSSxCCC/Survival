@@ -6,8 +6,7 @@ public class Fixation : MonoBehaviour {
     public Vector2 offset;
 
     // 每一帧固定其位置与旋转
-    private void LateUpdate()
-    {
+    private void LateUpdate() {
         transform.position = owner.position + (Vector3)offset;
         transform.rotation = Quaternion.identity;
     }

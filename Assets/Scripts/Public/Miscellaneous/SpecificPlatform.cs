@@ -12,10 +12,8 @@ public class SpecificPlatform : MonoBehaviour {
     private static List<RuntimePlatform> Phone_Platforms = new List<RuntimePlatform> { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer };
     private static Dictionary<PlatformType, List<RuntimePlatform>> platformLists = new Dictionary<PlatformType, List<RuntimePlatform>> { { PlatformType.PC, PC_Platforms}, { PlatformType.Phone, Phone_Platforms } };
 
-    private void Awake()
-    {
-        if (!IsCurrent(existPlatformType))
-        {
+    private void Awake() {
+        if (!IsCurrent(existPlatformType)) {
             DestroyImmediate(gameObject);
         }
     }
@@ -25,8 +23,7 @@ public class SpecificPlatform : MonoBehaviour {
     /// </summary>
     /// <param name="platformType">判断的平台类型</param>
     /// <returns>如果当前平台与参数平台类型匹配，则返回true，否则返回false</returns>
-    public static bool IsCurrent(PlatformType platformType)
-    {
+    public static bool IsCurrent(PlatformType platformType) {
         return platformLists[platformType].Contains(Application.platform);
     }
 }

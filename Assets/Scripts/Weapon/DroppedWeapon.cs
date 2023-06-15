@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-public class DroppedWeapon : NetworkBehaviour
-{
+public class DroppedWeapon : NetworkBehaviour {
     [SerializeField] GameObject m_WeaponPrefab; // 此掉落武器代表的武器
     public GameObject weaponPrefab { get { return m_WeaponPrefab; } set { m_WeaponPrefab = value; } }
 
@@ -11,8 +10,7 @@ public class DroppedWeapon : NetworkBehaviour
 
     // 碰到东西了
     [ServerCallback]
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
+    private void OnTriggerEnter2D(Collider2D collider) {
         // 判断对方是否能捡武器
         var weaponManager = collider.GetComponent<WeaponManager>();
         var playerController = collider.GetComponent<PlayerController>();
@@ -34,8 +32,7 @@ public class DroppedWeapon : NetworkBehaviour
 
     // 创建此掉落武器代表的武器实例
     [Server]
-    public GameObject CreateWeapon(Vector3 position, float angle)
-    {
+    public GameObject CreateWeapon(Vector3 position, float angle) {
         GameObject newWeapon = Instantiate(weaponPrefab, position, Quaternion.Euler(0, 0, angle));
         newWeapon.GetComponent<Weapon>().numAmmo = numAmmo;
         NetworkServer.Spawn(newWeapon);

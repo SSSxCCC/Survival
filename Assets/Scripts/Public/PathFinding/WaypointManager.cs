@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class WaypointManager : MonoBehaviour
-{
+public class WaypointManager : MonoBehaviour {
     public static WaypointManager singleton; // 单例
 
     public bool awakeBake = true; // 是否在Awake中调用Bake方法
@@ -12,8 +11,7 @@ public class WaypointManager : MonoBehaviour
 
     [HideInInspector] public Waypoint[] waypoints; // 所有路径点数组
 
-    private void Awake()
-    {
+    private void Awake() {
         singleton = this; // 自己成为单例
 
         if (awakeBake)
@@ -24,16 +22,14 @@ public class WaypointManager : MonoBehaviour
         //print(waypoints.Length);
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         AStar.Dispose();
     }
 
     private enum Point { Open, Closed, Passed } // 分别表示此点可通过，无法通行，可通行但已经被路径点区域包括
 
     // 产生路径点
-    public void Bake()
-    {
+    public void Bake() {
         Clear();
 
         // 得到边界值
@@ -61,40 +57,34 @@ public class WaypointManager : MonoBehaviour
         waypoints = GetComponentsInChildren<Waypoint>();
     }
 
-    private bool HasAnyTile(Vector3Int position)
-    {
+    private bool HasAnyTile(Vector3Int position) {
         if (waterTilemap.HasTile(position))
             return true;
         return HasAnyClosedTile(position);
     }
 
-    private bool HasAnyClosedTile(Vector3Int position)
-    {
+    private bool HasAnyClosedTile(Vector3Int position) {
         foreach (Tilemap tilemap in closedTilemaps)
             if (tilemap.HasTile(position))
                 return true;
         return false;
     }
 
-    private bool HasWaterWithoutClosedTile(Vector3Int position)
-    {
+    private bool HasWaterWithoutClosedTile(Vector3Int position) {
         return waterTilemap.HasTile(position) && !HasAnyClosedTile(position);
     }
 
-    private void Bake(Point[,] map, int xMin, int yMin)
-    {
+    private void Bake(Point[,] map, int xMin, int yMin) {
         int waypointMaxLength = (int)Mathf.Sqrt(waypointPrefabs.Length);
         for (int x = 0; x < map.GetLength(0); x++) // 从左下角开始遍历
             for (int y = 0; y < map.GetLength(1); y++)
-                if (map[x, y] == Point.Open)
-                {
+                if (map[x, y] == Point.Open) {
                     // 找到一个以(x, y)为左下角可行且较好的路径点长宽值
                     int widthBest = 0, heightBest = 0, cornerBest = 0;
                     int width, height, corner; // corner是被认为左上，右上，右下三个角较好的权值和。当满足(角上不是Closed且至少一邻边是Closed)或(角上是Closed且两邻边是否是Closed的情况一样)时认为此角较好。
                     for (width = waypointMaxLength; width > 0; width--)
                         for (height = waypointMaxLength; height > 0; height--)
-                            if (Suitable(map, x, y, width, height))
-                            {
+                            if (Suitable(map, x, y, width, height)) {
                                 corner = 0;
                                 if (x + width < map.GetLength(0) && y + height < map.GetLength(1) && ( // 右上角
                                      (map[x + width, y + height] != Point.Closed && (map[x, y + height] == Point.Closed || map[x + width, y] == Point.Closed)) ||
@@ -109,8 +99,7 @@ public class WaypointManager : MonoBehaviour
                                      (map[x + width, y - 1] == Point.Closed && (map[x, y - 1] == Point.Closed) == (map[x + width, y] == Point.Closed))
                                    )) corner += 1;
 
-                                if (corner > cornerBest || ((corner == cornerBest) && (width * height > widthBest * heightBest)))
-                                {
+                                if (corner > cornerBest || ((corner == cornerBest) && (width * height > widthBest * heightBest))) {
                                     widthBest = width;
                                     heightBest = height;
                                     cornerBest = corner;
@@ -129,8 +118,7 @@ public class WaypointManager : MonoBehaviour
     }
 
     // 检查当前以(x, y)作为左下角，width,height分别作为长和宽的路径点是否合适
-    private bool Suitable(Point[,] map, int x, int y, int width, int height)
-    {
+    private bool Suitable(Point[,] map, int x, int y, int width, int height) {
         // 不能越界
         if (x + width > map.GetLength(0) || y + height > map.GetLength(1))
             return false;
@@ -142,34 +130,28 @@ public class WaypointManager : MonoBehaviour
                     return false;
 
         // 四个边的外边要么都是Closed，要么都不是Closed
-        if (height > 1)
-        {
-            if (x > 0) // 左
-            {
+        if (height > 1) {
+            if (x > 0) { // 左
                 bool isClosed = map[x - 1, y] == Point.Closed;
                 for (int j = y + 1; j < y + height; j++)
                     if ((map[x - 1, j] == Point.Closed) != isClosed)
                         return false;
             }
-            if (x + width < map.GetLength(0)) // 右
-            {
+            if (x + width < map.GetLength(0)) { // 右
                 bool isClosed = map[x + width, y] == Point.Closed;
                 for (int j = y + 1; j < y + height; j++)
                     if ((map[x + width, j] == Point.Closed) != isClosed)
                         return false;
             }
         }
-        if (width > 1)
-        {
-            if (y > 0) // 下
-            {
+        if (width > 1) {
+            if (y > 0) { // 下
                 bool isClosed = map[x, y - 1] == Point.Closed;
                 for (int i = x + 1; i < x + width; i++)
                     if ((map[i, y - 1] == Point.Closed) != isClosed)
                         return false;
             }
-            if (y + height < map.GetLength(1)) // 上
-            {
+            if (y + height < map.GetLength(1)) { // 上
                 bool isClosed = map[x, y + height] == Point.Closed;
                 for (int i = x + 1; i < x + width; i++)
                     if ((map[i, y + height] == Point.Closed) != isClosed)
@@ -181,10 +163,8 @@ public class WaypointManager : MonoBehaviour
     }
 
     // 清除所有路径点
-    public void Clear()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
+    public void Clear() {
+        for (int i = 0; i < transform.childCount; i++) {
             Destroy(transform.GetChild(i).gameObject);
         }
 

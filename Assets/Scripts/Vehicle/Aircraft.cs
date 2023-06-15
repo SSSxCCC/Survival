@@ -31,8 +31,7 @@ public class Aircraft : Vehicle {
     }
 
     // 保持每个乘客在座位上
-    private void Update()
-    {
+    private void Update() {
         if (driver != null) driver.transform.position = seats[GetSeat(driver)].position;
         if (passenger1 != null) passenger1.transform.position = seats[GetSeat(passenger1)].position;
         if (passenger2 != null) passenger2.transform.position = seats[GetSeat(passenger2)].position;
@@ -117,8 +116,7 @@ public class Aircraft : Vehicle {
 
     // 玩家离开
     [Server]
-    public override void Leave(GameObject player)
-    {
+    public override void Leave(GameObject player) {
         base.Leave(player);
         if (LeaveAndGetSeat(player) == 0)
             GetComponent<NetworkIdentity>().RemoveClientAuthority(player.GetComponent<NetworkIdentity>().connectionToClient); // 取消授权
@@ -297,8 +295,7 @@ public class Aircraft : Vehicle {
         }
     }
 
-    private int GetSeat(GameObject player)
-    {
+    private int GetSeat(GameObject player) {
         if (player == driver) return 0;
         else if (player == passenger1) return 1;
         else if (player == passenger2) return 2;

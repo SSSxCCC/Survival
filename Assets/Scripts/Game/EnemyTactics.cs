@@ -2,8 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class EnemyTactics
-{
+public class EnemyTactics {
     public Enemy[] enemies; // 定义有哪些敌人及其比例
 
     // 随机得到下一个敌人的类型

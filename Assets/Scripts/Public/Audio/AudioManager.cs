@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-public class AudioManager : MonoBehaviour
-{
+public class AudioManager : MonoBehaviour {
     public static AudioManager singleton; // 单例
 
     /// <summary>
@@ -17,14 +16,10 @@ public class AudioManager : MonoBehaviour
     private const string masterVolumeKey = "masterVolume";
 
     // 单例模式
-    private void Awake()
-    {
-        if (singleton == null)
-        {
+    private void Awake() {
+        if (singleton == null) {
             singleton = this;
-        }
-        else if (singleton != this)
-        {
+        } else if (singleton != this) {
             Destroy(gameObject);
             return;
         }
@@ -35,8 +30,7 @@ public class AudioManager : MonoBehaviour
     }
 
     // 根据上次设置调整音量
-    private void Initialize()
-    {
+    private void Initialize() {
         AudioListener.volume = PlayerPrefs.GetFloat(masterVolumeKey, 1);
     }
 }

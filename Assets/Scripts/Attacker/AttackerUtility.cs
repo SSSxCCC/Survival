@@ -3,8 +3,7 @@
 /// <summary>
 /// 攻击者工具类，里面有一些对攻击者脚本很有用的方法
 /// </summary>
-public class AttackerUtility
-{
+public class AttackerUtility {
     /// <summary>
     /// 判断攻击者是否应该伤害受害者
     /// </summary>

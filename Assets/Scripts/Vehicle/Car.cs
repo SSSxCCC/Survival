@@ -125,8 +125,7 @@ public class Car : Vehicle {
     /// <param name="player">玩家</param>
     /// <returns>玩家之前的座位号</returns>
     [Server]
-    private int LeaveAndGetSeat(GameObject player)
-    {
+    private int LeaveAndGetSeat(GameObject player) {
         int seat = GetSeat(player);
         if (seat >= 0) {
             PutPlayer(null, seat);

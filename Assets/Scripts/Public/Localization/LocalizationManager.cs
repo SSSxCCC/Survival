@@ -3,8 +3,7 @@
 /// <summary>
 /// 本地化管理器，主要用来设置游戏语言。
 /// </summary>
-public class LocalizationManager : MonoBehaviour
-{
+public class LocalizationManager : MonoBehaviour {
     public static LocalizationManager singleton; // 单例
     
     string m_Language;
@@ -28,14 +27,10 @@ public class LocalizationManager : MonoBehaviour
     private const string languageKey = "language";
 
     // 单例模式
-    private void Awake()
-    {
-        if (singleton == null)
-        {
+    private void Awake() {
+        if (singleton == null) {
             singleton = this;
-        }
-        else if (singleton != this)
-        {
+        } else if (singleton != this) {
             Destroy(gameObject);
             return;
         }
@@ -46,12 +41,10 @@ public class LocalizationManager : MonoBehaviour
     }
 
     // 根据上次的设置或系统语言来调整游戏语言
-    private void Initialize()
-    {
+    private void Initialize() {
         string savedLanguage = PlayerPrefs.GetString(languageKey); // 得到语言设置记录
 
-        if (string.IsNullOrEmpty(savedLanguage)) // 没有语言设置记录
-        {
+        if (string.IsNullOrEmpty(savedLanguage)) { // 没有语言设置记录
             // 根据系统语言设置语言
             if (Application.systemLanguage == SystemLanguage.Chinese || Application.systemLanguage == SystemLanguage.ChineseSimplified || Application.systemLanguage == SystemLanguage.ChineseTraditional)
                 savedLanguage = "chs";
